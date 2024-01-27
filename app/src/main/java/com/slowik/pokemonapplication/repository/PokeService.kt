@@ -6,11 +6,15 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
+import retrofit2.http.Path
 
 
 interface PokeService {
     @GET("/api/v2/pokemon")
     suspend fun getPokeResponse(): Response<PokeResponse>
+
+    @GET("/api/v2/pokemon/{id}")
+    suspend fun getPokeDetails(@Path("id")id: String): Response<PokemonDetailsResponse>
 
     companion object{
         private const val BASE_URL="https://pokeapi.co/"
